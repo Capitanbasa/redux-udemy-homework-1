@@ -1,41 +1,27 @@
+import * as actionType from '../actions';
 const initialState = {
-    counter : 0,
-    result : []
+    counter : 0
 }
 const reducer = (state = initialState, action) => {
     switch (action.type){
-        case 'INCREMENT' :
+        case actionType.INCREMENT :
             const newState = Object.assign({} , state);
             newState.counter = state.counter + 1;
             return newState;
-        case 'DECREMENT' :
+        case actionType.DECREMENT :
             return {
                 ...state,
                 counter : state.counter -1
             }
-        case 'ADD_FIVE' :
+        case actionType.ADD :
             return {
                 ...state,
                 counter : state.counter + action.payload.addionalvalue
             }
-        case 'SUB_FIVE' :
+        case actionType.SUBSTRACT :
             return {
                 ...state,
                 counter : state.counter - action.payload.subtractvalue
-            }
-        case 'STORE_RESULT' :
-            return {
-                ...state,
-                result : state.result.concat({id :new Date(), value : state.counter})
-            };
-        case 'DELETE_RESULT' :
-        //const id =1;
-        // const newArray = [...state.result];
-        // newArray.splice(id, 1);
-        const updatedArray = state.result.filter((res, index) => res.id !== action.payload.id);
-            return {
-                ...state,
-                result : updatedArray
             }
         //no default
     }
